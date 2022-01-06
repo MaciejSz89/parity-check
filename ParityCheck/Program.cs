@@ -19,11 +19,11 @@ namespace ParityCheck
 
                     if (IsNumberEven(number))
                     {
-                        DisplayMessage("Ta liczba jest parzysta");
+                        DisplayMessage("Ta liczba jest parzysta\n");
                     }
                     else
                     {
-                        DisplayMessage("Ta liczba jest nieparzysta");
+                        DisplayMessage("Ta liczba jest nieparzysta\n");
                     }
                 }
                 catch (Exception)
@@ -34,7 +34,9 @@ namespace ParityCheck
                 {
                     DisplayMessage("");
                 }
-            }
+
+
+             }
         }
 
         private static bool IsNumberEven(int number)
@@ -44,9 +46,21 @@ namespace ParityCheck
 
         private static int GetNumber()
         {
-            var result = int.Parse(Console.ReadLine());
+            int result;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out result))
+                {
+                    return result;
+                }
+                else
+                {
+                    DisplayMessage("Podano liczbę w nieprawidłowym formacie. Podaj prawidłową wartość:");
+                    continue;
+                }
+                    
+            }
             
-            return result;
         }
 
         private static void DisplayMessage(string message)
